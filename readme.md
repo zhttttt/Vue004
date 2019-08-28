@@ -27,3 +27,13 @@
 + 在源代码管理工具里 就是左边第三个
 + 写好提示消息后 点√  会提交到本地
 + 点开更多  推送
+
+
+## 制作首页App组件
+1.  完成Header区域，使用的是Mint-UI中的Header组件
+2.  制作底部的Tabbar区域，使用的是MUI的Tabbar.html
+    + 在制作购物车小图标时，先把扩展图标的css样式 拷贝到项目(src/lib/mui/css)中
+    + 再把扩展字体库 ttf 拷贝到(src/lib/mui/fonts)中 
+    + 然后在main.js里 import './lib/mui/css/icons-extra.css' 
+    + 最后在app.vue里把样式写入到 组件里 class= 
+3.  要在中间区域放置一个router-view来展示路由匹配到的组件
