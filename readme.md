@@ -28,6 +28,8 @@
 + 写好提示消息后 点√  会提交到本地
 + 点开更多  推送
 
+> 子组件放到 component文件夹 入口app组件放外 ，lib放项目需要的包  router.js 路由路口  main.js 写入口文件  css写样式 index是主页入口
+
 
 ## 制作首页App组件
 1.  完成Header区域，使用的是Mint-UI中的Header组件
@@ -37,3 +39,8 @@
     + 然后在main.js里 import './lib/mui/css/icons-extra.css' 
     + 最后在app.vue里把样式写入到 组件里 class= 
 3.  要在中间区域放置一个router-view来展示路由匹配到的组件
+
+## 改造 tabbar 为router-link
+1. 设置路由高亮
+2. 点击tabbar 中的路由链接，展示对应的路由组件
+3. 创建tabber 4个的子组件在文件夹component 然后在router.js里导入这四个 在配对规则
