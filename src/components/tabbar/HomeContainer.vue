@@ -1,11 +1,7 @@
 <template>
     <div>
         <!-- 这是轮播图区 -->
-        <mt-swipe :auto="4000">
-            <mt-swipe-item>1</mt-swipe-item>
-            <mt-swipe-item>2</mt-swipe-item>
-            <mt-swipe-item>3</mt-swipe-item>
-        </mt-swipe>
+        <swiper :lunbotulist="lunbotulist" :isfull="true"></swiper>
 
         <!-- 九宫格-6宫格 -->
         <ul class="mui-table-view mui-grid-view mui-grid-9">
@@ -16,12 +12,15 @@
                 </router-link>    
             </li>
             
-	        <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4"><a href="#">
+	        <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4">
+                <router-link to="/home/photolist">
 	                <img src="../../images/menu2.png" alt="">
-	                <div class="mui-media-body">图片分享</div></a></li>
-	        <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4"><a href="#">
+	                <div class="mui-media-body">图片分享</div>
+                </router-link></li>
+	        <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4">
+                <router-link to="/home/goodlist">
 	                <img src="../../images/menu3.png" alt="">
-	                <div class="mui-media-body">商品购买</div></a></li>
+	                <div class="mui-media-body">商品购买</div></router-link></li>
 	        <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4"><a href="#">
 	                <img src="../../images/menu4.png" alt="">
 	               <div class="mui-media-body">留言反馈</div></a></li>
@@ -38,52 +37,39 @@
 </template>
 
 <script>
-// import { Toast } from 'mint-ui'
+import { Toast } from 'mint-ui';
+import swiper from '../subcomponents/swiper.vue';
 
 export default {
-//     data() {
-//         return {
-//             lunbotuList:[] //保存轮播图的数组
-//         }
-//     },
-//     created() { //创建实例就调用
-//         this.gerLunbotu();
-//     },
-//     methods: {
-//         gerLunbotu(){
-//             // 获取轮播图的方法
-//             this.$http.get("http://vue.studyit.io/api/getlunbo").then(result => {
-//                 // console.log(result.body);
-//                 if (result.body.status === 0) {
-//                     this.lunbotuList = result.body.message;
-//                 } else {
-//                     Toast('加载轮播图失败')
-//                 }
-//             })
-//         }
-//     },
+    data() {
+        return {
+            lunbotulist:[] //保存轮播图的数组
+        }
+    },
+    created() { //创建实例就调用
+        this.gerLunbotu();
+    },
+    methods: {
+        gerLunbotu(){
+            // 获取轮播图的方法
+            this.$http.get("api/getlunbo").then(result => {
+                // console.log(result.body);
+                if (result.body.status === 0) {
+                    this.lunbotulist = result.body.message;
+                } else {
+                    Toast('加载轮播图失败')
+                }
+            })
+        }
+    },
+    components:{
+        swiper
+    }
  }
 </script>
 
 <style lang="scss" scoped>
-    .mint-swipe{
-        height: 200px;
-
-        // .mint-swipe-item:nth-child(1){
-        //     background-color: red;
-        // }
-        .mint-swipe-item{
-            &:nth-child(1){ //sass里的嵌套应用
-                background-color: red;
-            }
-            &:nth-child(2){
-                background-color: blue;
-            }
-            &:nth-child(3){
-                background-color: cyan;
-            }
-        }
-    }
+    
     .mui-grid-view.mui-grid-9{
         background-color: white;
         border: 0;

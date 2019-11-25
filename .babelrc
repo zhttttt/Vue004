@@ -5,7 +5,7 @@
           "libraryName": "mint-ui",  
           "style": true
         }
-      ]]
+      ], "transform-remove-strict-mode"]
 }
 // 1.安装npm install babel-plugin-component -D 吧mint-ui的内容按需导入
 // 2. 注册 到plugins里  第二个那个
