@@ -20,7 +20,7 @@ export default {
 		
 	},
 	props: ['max'],
-	watch: {
+	watch: {//监听传过来的最大值
 		max: function(newVal,oldVal){
 			mui('.mui-numbox').numbox().setOption('max',newVal);
 		}

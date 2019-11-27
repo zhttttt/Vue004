@@ -140,3 +140,27 @@ getComments
 4. 注意： 每个图片数据对象中必须有w 和h 属性
 
 ## 绘制商品
+1. 绘制页面
+2. 制作小球
++ 2.1 如何获取小球的位置 domObject.getBoundingClientRect() 这是dom方法
+3. 实现加入购物车的时候 拿到 选择的数量  用事件注册 ，子向父传递选择的数量 
+    + 3.1 	每当文本框的数据被修改的时候，立即吧最新的数据，通过事件调用传递给父组件
+			this.$emit('getCount', parseInt(this.$refs.numbox.value))
+4. 限制mui里的 .mui-numbox 里的最大值 
+    + 这里的max是父组件传递过来的 但父组件里的goodsinfo是异步获取，所以max首选获取到的是goodsinfo的空数组，显示undefined 所以我们用watch属性监听，来监听父组件传递过来的max值，不管watch会被触发几次，最后一次，肯定是个合法的值
+
+### vuex
+1. vuex 是Vue配套的公共数据管理工具，他可以把一些共享的数据，保存到vuex中，方便整个过程中的任何组件直接获取或者修改我们的公共数据（如果不使用vuex 个个组件之间的传值都要经过父子组件，爷孙传值就很麻烦，vuex提供一个公共区域，个个组件可以直接去那取值）
+2. 装包 npm install vuex --save    导入 import Vue from 'vue' import Vuex from 'vuex'   注册  Vue.use(Vuex)  创建一个store实例 const store = new Vuex.store(        {state{ 
+        count:22  //存放数据
+    },
+    mutations:{
+        increment(state){
+            state.count++   //修改数据
+        }
+    }
+})
+
+
+
+	

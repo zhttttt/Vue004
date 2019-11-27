@@ -1,7 +1,11 @@
 <template>
     <div class="app-container">
         <!-- 顶部Header区域-->
-        <mt-header fixed title="Vue 项目"></mt-header>
+        <mt-header fixed title="Vue 项目">
+			<span slot="left" @click="goBack" v-show="flag">
+				<mt-button icon="back">返回</mt-button>
+			</span>
+		</mt-header>
         <!-- 中间的路由 router-view区域 -->
 		<transition>
         	<router-view></router-view>
@@ -17,7 +21,7 @@
 				<span class="mui-tab-label">会员</span>
 			</router-link>
 			<router-link class="mui-tab-item" to="/shopcar">
-				<span class="mui-icon mui-icon-extra mui-icon-extra-cart"><span class="mui-badge" id="badge">0</span></span>
+				<span class="mui-icon mui-icon-extra mui-icon-extra-cart"><span class="mui-badge" id="badge">{{ $store.getters.getAllCount }}</span></span>
 				<span class="mui-tab-label">购物车</span>
 			</router-link>
 			<router-link class="mui-tab-item" to="/search">
@@ -31,7 +35,32 @@
 </template>
 
 <script>
-
+export default {
+	data() {
+		return {
+			flag: false
+		}
+	},
+	created() {
+		//防止刷新时 当前页面 没有触发watch，返回按钮不显示  
+		this.flag = this.$route.path === '/home' ? false : true;
+	},
+	methods: {
+		goBack(){
+			//点击后退
+			this.$router.go(-1);
+		}
+	},
+	watch: {
+		'$route.path' : function(newVal) {
+			if(newVal === "/home"){
+				this.flag = false
+			} else{
+				this.flag = true
+			}
+		}
+	},
+}
     
 </script>
 
